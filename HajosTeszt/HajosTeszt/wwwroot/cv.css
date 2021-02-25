@@ -1,0 +1,56 @@
+﻿body {
+    background-color: #BED6B2;
+}
+
+div {
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid #568E39;
+}
+
+h1, h2{
+    text-align: center;
+}
+
+a {
+    background-color: #568E39;
+    color: white;
+}
+
+
+
+span {
+    font-weight: bold;
+    font-style: italic;
+    color: #568E39;
+}
+
+span.oliva{
+    color: #568E39;
+}
+
+span.vege{
+    font-size: 40px;
+    color: white;
+    background-color: #7DC25B;
+}
+#listak{
+    background-color: lightgray;
+}
+
+#bce {
+    background-color: #568E39;
+}
+
+#bce:hover{
+    background-color: #7DC25B;
+}
+
+img {
+    /*display: block;
+    margin: auto;  végül nem raktam bele,
+    mert nem nézett volna ki jól az oldal*/
+    border: 3px solid #568E39;
+    border-radius: 10px;
+    padding: 20px;
+}
