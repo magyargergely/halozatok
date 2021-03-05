@@ -1,0 +1,123 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+body {
+    font-weight: bold;
+    text-align: center;
+    background-color: #BED6B2;
+}
+
+img {
+    /*display: block;
+    margin: auto;  végül nem raktam bele,
+    mert nem nézett volna ki jól az oldal*/
+    border: 3px solid #568E39;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+#header {
+    background-color: olive;
+    padding: 20px;
+}
+
+#nav {
+    background-color: olivedrab;
+    padding: 20px;
+    display: flex;
+}
+
+    #nav a {
+        text-decoration: none;
+        color: black;
+        flex: 1 1 auto;
+    }
+
+#article {
+    background-color: darkseagreen;
+    padding: 20px;
+    text-align: left;
+}
+
+#aside {
+    background-color: lightgreen;
+    padding: 20px;
+    text-align: left;
+}
+
+#footer {
+    background-color: darkseagreen;
+    padding: 20px;
+}
+
+@media screen and (min-width: 800px) {
+    body {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+        max-width: 1500px;
+    }
+
+    #main {
+        display: flex;
+    }
+
+    #nav, header {
+        order: -1;
+    }
+
+    #article {
+        flex: 1 1 75%;
+    }
+
+    #aside {
+        flex: 1 1 25%;
+    }
+}
+
+div {
+    margin: 10px;
+    padding: 10px;
+    border: 2px solid #568E39;
+    border-color: olive;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+a {
+    background-color: #568E39;
+    color: white;
+}
+
+
+
+span {
+    font-weight: bold;
+    font-style: italic;
+    color: black;
+}
+
+    span.oliva {
+        color: #568E39;
+    }
+
+    span.vege {
+        font-size: 40px;
+        color: black;
+        background-color: #7DC25B;
+    }
+
+#listak {
+    background-color: yellowgreen;
+}
+
+#bce {
+    background-color: #568E39;
+}
+
+    #bce:hover {
+        background-color: #7DC25B;
+    }
