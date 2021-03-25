@@ -57,13 +57,11 @@ div {
     cursor: pointer;
 }
 
-.kattintható:hover {
-    background-color: darkcyan;
-    color: white;
-}
 
 .jó {
+    background-color: green;
 }
 
 .rossz {
+    background-color: red;
 }
