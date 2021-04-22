@@ -1,56 +1,75 @@
 ﻿window.onload = () => {
-    letöltés()
+    kérdésBetöltés()
 }
 
 var kérdések;
-var oldal = 0;
 var jóválasz;
+var oldal=1;
 
-function letöltés() {
-    fetch("/questions.json")
-        .then(response => response.json())
-        .then(data => letöltésBefejeződött(data));
+
+function kérdésBetöltés(id = oldal) {
+   fetch(`/questions/${id}`)
+        .then(response => {
+            if (!response.ok) {
+                console.error(`Hibás válasz: ${response.status}`)
+            }
+            else {
+                return response.json()
+            }
+        })
+        .then(data => kérdésMegjelenítés(data));
 }
-
-function letöltésBefejeződött(d) {
-    console.log("Sikeres letöltés!")
-    console.log(d)
-    kérdések = d;
-
-    kérdésMegjelenítés(1)
-}
-
 
 function kérdésMegjelenítés(k) {
+
+    console.log(k)
     let kerdes = document.getElementById("kérdés")
-    kerdes.innerText = kérdések[k].questionText;
-    console.log(`${kérdések.length} kérdés érkezett`)
+    kerdes.innerText = k.questionText;
 
-    document.getElementById("válasz1").innerHTML = kérdések[k].answer1;
-    document.getElementById("válasz2").innerHTML = kérdések[k].answer2;
-    document.getElementById("válasz3").innerHTML = kérdések[k].answer3;
+    document.getElementById("válasz1").innerHTML = k.answer1;
+    document.getElementById("válasz2").innerHTML = k.answer2;
+    document.getElementById("válasz3").innerHTML = k.answer3;
 
-    document.getElementById("kép1").src = "https://szoft1.comeback.hu/hajo/" + kérdések[k].image;
-
-    jóválasz = kérdések[k].correctAnswer;
+    if (k.image == "") {
+        document.getElementById("kép").style.visibility = 'hidden';
+    }
+    else {
+        document.getElementById("kép").style.visibility = 'visible';
+        document.getElementById("kép1").src = "https://szoft1.comeback.hu/hajo/" + k.image;
+    }
+    
+    jóválasz = k.correctAnswer;
 }
 
 function előre() {
+
     oldal = oldal + 1;
-    if (oldal == kérdések.length) {
-        oldal = 0;
-    }
-    kérdésMegjelenítés(oldal);
+
+    document.getElementById("válasz1").classList.remove("jó");
+    document.getElementById("válasz1").classList.remove("rossz");
+
+    document.getElementById("válasz2").classList.remove("jó");
+    document.getElementById("válasz2").classList.remove("rossz");
+
+    document.getElementById("válasz3").classList.remove("jó");
+    document.getElementById("válasz3").classList.remove("rossz");
+
+    kérdésBetöltés();
 }
 
 function vissza() {
-    if (oldal == 0) {
-        oldal = kérdések.length - 1;
-    }
-    else {
-        oldal = oldal - 1;
-    }
-    kérdésMegjelenítés(oldal);
+    oldal = oldal - 1;
+
+    document.getElementById("válasz1").classList.remove("jó");
+    document.getElementById("válasz1").classList.remove("rossz");
+
+    document.getElementById("válasz2").classList.remove("jó");
+    document.getElementById("válasz2").classList.remove("rossz");
+
+    document.getElementById("válasz3").classList.remove("jó");
+    document.getElementById("válasz3").classList.remove("rossz");
+
+    kérdésBetöltés();
 }
 
 function jelöltVálasz1() {
@@ -60,7 +79,7 @@ function jelöltVálasz1() {
     }
     else {
         megjelöltválasz1.classList.add("rossz")
-    }
+    }    
 }
 
 function jelöltVálasz2() {
