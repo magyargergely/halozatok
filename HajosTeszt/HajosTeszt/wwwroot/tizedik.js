@@ -166,9 +166,6 @@ function jelöltVálasz1() {
     }
 
     timeoutHandler = setTimeout(előre, 3000);
-    //localStorage.setItem("hotList", JSON.stringify(hotList));
-    //localStorage.setItem("displayedQuestion", displayedQuestion);
-    //localStorage.setItem("nextQuestion", nextQuestion);
 }
 
 function jelöltVálasz2() {
@@ -192,9 +189,6 @@ function jelöltVálasz2() {
     }
 
     timeoutHandler = setTimeout(előre, 3000);
-    //localStorage.setItem("hotList", JSON.stringify(hotList));
-    //localStorage.setItem("displayedQuestion", displayedQuestion);
-    //localStorage.setItem("nextQuestion", nextQuestion);
 }
 
 function jelöltVálasz3() {
@@ -218,8 +212,5 @@ function jelöltVálasz3() {
     }
 
     timeoutHandler = setTimeout(előre, 3000);
-    //localStorage.setItem("hotList", JSON.stringify(hotList));
-    //localStorage.setItem("displayedQuestion", displayedQuestion);
-    //localStorage.setItem("nextQuestion", nextQuestion);
 }
 
