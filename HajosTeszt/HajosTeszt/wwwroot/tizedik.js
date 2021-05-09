@@ -22,12 +22,29 @@ function init() {
             goodAnswers: 0
         }
         hotList[i] = q;
-    }
+    };    
 
-    for (var i = 0; i < questionsInHotList; i++) {
-        kérdésBetöltés(nextQuestion, i);
-        nextQuestion++;
+    if (localStorage.getItem("hotList")) {
+        hotList = JSON.parse(localStorage.getItem("hotList"));
+    };
+
+    if (localStorage.getItem("displayedQuestion")) {
+        displayedQuestion = parseInt(localStorage.getItem("displayedQuestion"));
+    };
+
+    if (localStorage.getItem("nextQuestion")) {
+        nextQuestion = parseInt(localStorage.getItem("nextQuestion"));
+    };
+
+    if (hotList.length === 0) {
+        for (var i = 0; i < questionsInHotList; i++) {
+            kérdésBetöltés(nextQuestion, i);
+            nextQuestion++;
+        }
     }
+    else {
+        kérdésMegjelenítés();
+    }    
 }
 
 function kérdésBetöltés(questionNumber, destination) {
@@ -97,6 +114,10 @@ function előre() {
     if (displayedQuestion == questionsInHotList) displayedQuestion = 0;
 
     kérdésMegjelenítés();
+
+    localStorage.setItem("hotList", JSON.stringify(hotList));
+    localStorage.setItem("displayedQuestion", displayedQuestion);
+    localStorage.setItem("nextQuestion", nextQuestion);
 }
 
 function vissza() {
@@ -118,6 +139,10 @@ function vissza() {
     document.getElementById("válasz3").classList.remove("rossz");
 
     kérdésMegjelenítés();
+
+    localStorage.setItem("hotList", JSON.stringify(hotList));
+    localStorage.setItem("displayedQuestion", displayedQuestion);
+    localStorage.setItem("nextQuestion", nextQuestion);
 }
 
 function jelöltVálasz1() {
@@ -141,6 +166,9 @@ function jelöltVálasz1() {
     }
 
     timeoutHandler = setTimeout(előre, 3000);
+    //localStorage.setItem("hotList", JSON.stringify(hotList));
+    //localStorage.setItem("displayedQuestion", displayedQuestion);
+    //localStorage.setItem("nextQuestion", nextQuestion);
 }
 
 function jelöltVálasz2() {
@@ -164,6 +192,9 @@ function jelöltVálasz2() {
     }
 
     timeoutHandler = setTimeout(előre, 3000);
+    //localStorage.setItem("hotList", JSON.stringify(hotList));
+    //localStorage.setItem("displayedQuestion", displayedQuestion);
+    //localStorage.setItem("nextQuestion", nextQuestion);
 }
 
 function jelöltVálasz3() {
@@ -187,5 +218,8 @@ function jelöltVálasz3() {
     }
 
     timeoutHandler = setTimeout(előre, 3000);
+    //localStorage.setItem("hotList", JSON.stringify(hotList));
+    //localStorage.setItem("displayedQuestion", displayedQuestion);
+    //localStorage.setItem("nextQuestion", nextQuestion);
 }
 
