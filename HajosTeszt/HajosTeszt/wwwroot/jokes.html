@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <form>
+        <div>
+            <input id="jokeText" type="text" placeholder="Csak PC vicc" />
+        </div>
+        <button id="addButton">Új vicc felvétele</button>
+        <div>
+            <input id="listJokeText" type="text" placeholder="Vicc sorszáma" />
+        </div>
+        <button id="listButton">Vicc listázása</button>
+        <div id="jokeList"></div>
+    </form>
+    <script>
+        document.getElementById("addButton").addEventListener("click", () => {
+            let data = {
+                jokeText: document.getElementById("jokeText").value
+            }
+            fetch("api/jokes",
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                }
+            ).then(x => {
+                if (x.ok) {
+                    alert("Siker");
+                }
+                else {
+                    alert("Kudarc");
+                }
+            });
+        });
+
+        document.getElementById("listButton").addEventListener("click", () => {
+            let lista = {
+                listJokeText: document.getElementById("listJokeText").value
+            }
+            fetch("api/jokes/${lista}",
+                {
+                    method: 'GET',
+                    header: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+            ).then(lista => viccLista(lista))
+        })
+
+        function viccLista(kszám) {
+            document.getElementById("jokeList").innerText = kszám.jokeText;
+        }
+    </script>
+</body>
+</html>
